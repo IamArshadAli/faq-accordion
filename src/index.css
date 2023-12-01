@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer step2styles, markers;
+
+details {
+  border-radius: 0.5rem;
+  transition: 50ms;
+}
+details[open] {
+    padding-bottom: 1em;
+}  
+
+summary::before,
+summary::after {
+    transition: 200ms;
+  }
+
+
+
+@layer markers {
+  summary {
+  position: relative;
+}
+summary::marker {
+  content: none;
+}
+summary::before,
+summary::after {
+  content: url(./src/assets/images/icon-plus.svg);
+}
+summary::before,
+summary::after {
+    width: .75em;
+    height: 0;
+    border-bottom: 2px solid;
+    position: absolute;
+    top: calc(50% - 1px);
+    right: 0;
+    transform: translateY(-50%);
+  }
+summary::after {
+  transform: rotate(90deg);
+  transform-origin: 50% 50%;
+}
+[open] summary::after {
+  transform: rotate(0deg);
+  content: url(./assets/images/icon-minus.svg);
+}
+}
+
+/* styles ported over from the second example */
+@layer step2styles {
+  details {
+    border: 1px solid;
+    background: white;
+  }
+  details + details {
+    border-top: none;
+  }
+  details[open] {
+      padding-bottom: 1em;
+  }  
+  summary {
+    font-size: .75rem;
+    font-weight: bold;
+    cursor: pointer;
+  }
+}
