@@ -4,69 +4,40 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer step2styles, markers;
-
-details {
-  border-radius: 0.5rem;
-  transition: 50ms;
-}
-details[open] {
-    padding-bottom: 1em;
-}  
-
-summary::before,
-summary::after {
-    transition: 200ms;
+@layer components {
+  .main {
+    @apply flex min-h-screen w-screen flex-col items-center bg-LightPink px-5 font-WorkSans pb-10
   }
 
-
-
-@layer markers {
-  summary {
-  position: relative;
-}
-summary::marker {
-  content: none;
-}
-summary::before,
-summary::after {
-  content: url(./src/assets/images/icon-plus.svg);
-}
-summary::before,
-summary::after {
-    width: .75em;
-    height: 0;
-    border-bottom: 2px solid;
-    position: absolute;
-    top: calc(50% - 1px);
-    right: 0;
-    transform: translateY(-50%);
+  .main__background {
+    @apply min-h-[14.5rem] w-screen bg-[url(./assets/images/background-pattern-mobile.svg)] bg-cover bg-no-repeat md:bg-[url(./assets/images/background-pattern-desktop.svg)] md:min-h-[20rem]
   }
-summary::after {
-  transform: rotate(90deg);
-  transform-origin: 50% 50%;
-}
-[open] summary::after {
-  transform: rotate(0deg);
-  content: url(./assets/images/icon-minus.svg);
-}
-}
 
-/* styles ported over from the second example */
-@layer step2styles {
-  details {
-    border: 1px solid;
-    background: white;
+  .card {
+    @apply -mt-[5.6rem] max-w-[20.45rem] rounded-lg bg-White p-6 md:max-w-[37.5rem] md:rounded-xl md:-mt-[9.55rem] md:px-[2.5rem] md:py-12
   }
-  details + details {
-    border-top: none;
+
+  .card__header {
+    @apply flex space-x-6 items-center mb-[1.55rem] md:mb-[2.9rem]
   }
-  details[open] {
-      padding-bottom: 1em;
-  }  
-  summary {
-    font-size: .75rem;
-    font-weight: bold;
-    cursor: pointer;
+
+  .header__icon {
+    @apply bg-[url('./assets/images/icon-star.svg')] bg-contain bg-no-repeat w-6 h-6 md:w-[2.55rem] md:h-[2.55rem] md:mt-1
+  }
+
+  .header__title {
+    @apply text-[2rem] leading-9 font-bold text-DarkPurple md:text-[3.45rem] md:mt-1.5
+  }
+
+  .faq__question {
+    @apply relative cursor-pointer pr-12 font-bold leading-[1.2] text-DarkPurple marker:content-none after:absolute after:right-0 after:top-[.23rem] after:content-[url(./assets/images/icon-plus.svg)] hover:text-[#AD28EB] group-open:after:content-[url(./assets/images/icon-minus.svg)] md:text-lg md:after:-top-[.22rem] md:mt-[1.9rem]
+  }
+
+  .faq__answer {
+    @apply pt-6 text-sm leading-normal text-GrayishPurple md:text-base
+  }
+
+  .faq__divider {
+    @apply bg-LightPink mt-5 mb-7
   }
 }
